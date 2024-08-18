@@ -11,8 +11,16 @@ const loader = document.querySelector('.loader');
 
 const onFormSbm = event => {
   event.preventDefault();
+  const searchedValue = sbmForm.elements.user_query.value.trim();
+  if (searchedValue === '') {
+    iziToast.show({
+      message: `❌ Sorry, there are no images matching your search query. Please try again!`,
+      color: 'red',
+      position: 'topRight',
+    });
+    return;
+  }
   loader.classList.add('is-open');
-  const searchedValue = sbmForm.elements.user_query.value;
 
   //   fetch(
   //     `${mainUrl}&q=${searchedValue}&image_type=photo&orientation=horizontal&safesearch=true`
